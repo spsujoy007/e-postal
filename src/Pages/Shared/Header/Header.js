@@ -4,10 +4,13 @@ import { AuthContext } from '../../../context/AuthProvider';
 
 const Header = () => {
 
-  const {user, signOut} = useContext(AuthContext);
+  const {user, logout} = useContext(AuthContext);
 
   const handleLogout = () => {
-    signOut()
+    console.log('logout')
+    logout()
+    .then(() => {})
+    .catch(err => console.error(err))
   }
 
     const menubar = <>
@@ -36,15 +39,19 @@ const Header = () => {
     </ul>
   </div>
   <div className="navbar-end">
-      {
-        user?.uid ? <>
-        <Link to='/login'><button className='btn btn-primary'>Login</button></Link>
-        <Link to='/register'><button className='btn btn-primary'>register</button></Link>
-        </>
-          :
-        <button onClick={handleLogout} className='btn btn-primary'>Logout</button>
+        {
+          user?.uid ?
+          <button onClick={handleLogout} className='btn btn-primary'>Logout</button>
+        :
+          <>
+          <Link to='/login'><button className='btn btn-primary'>Login</button></Link>
+          <Link to='/register'><button className='btn btn-primary'>register</button></Link>
+          </>
         
-      }
+        }
+        
+        
+      
   </div>
 </div>
         </div>

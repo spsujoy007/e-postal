@@ -16,7 +16,8 @@ const Postarea = () => {
                 <div className="card-body">
                     <textarea name='caption' className="textarea textarea-bordered" placeholder="Bio"></textarea>
                     <div className='flex gap-2 items-center'>
-                        <input name='postImage' type="file" placeholder='chose image' className="file-input file-input-primary w-full border-1 border-gray-300" />
+                        {/* <input name='postImage' type="file" placeholder='chose image' className="file-input file-input-primary w-full border-1 border-gray-300" /> */}
+                        <button type='file'>photo</button>
                     </div>
                 <div className="card-actions justify-end">
                     <button type='submit' className="btn btn-primary px-20">Post</button>

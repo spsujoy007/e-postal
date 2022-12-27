@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 const Register = () => {
-    const {createUser} = useContext(AuthContext);
+    const {createUser, googleSign} = useContext(AuthContext);
 
     const handleRegister = (event) => {
         event.preventDefault();
@@ -19,6 +19,16 @@ const Register = () => {
             const user = result.user;
             console.log(user);
         })
+        .catch(err => console.error(err))
+    }
+
+    const handleGoogleSign = () => {
+        googleSign()
+        .then(result => {
+            const user = result.user;
+            console.log(user)
+        })
+        .catch(err => console.error(err))
     }
 
     return (
@@ -73,7 +83,7 @@ const Register = () => {
             <div className="divider">OR</div>
         <div className="grid place-items-center">
             <div className='flex justify-center'>
-                <button className='btn btn-primary px-20'>
+                <button onClick={handleGoogleSign} className='btn btn-primary px-20'>
                     <FaGoogle className='text-2xl text-white'></FaGoogle> 
                 </button>
             </div> 

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Login = () => {
     return (
-        <div className='mt-10 mb-40'>
+        <form className='mt-10 mb-40'>
             <div className="hero">
   <div className="hero-content flex-col lg:flex-row-reverse">
     <div className=" lg:text-left">
@@ -46,7 +46,7 @@ const Login = () => {
     </div>
   </div>
 </div>
-        </div>
+        </form>
     );
 };
 

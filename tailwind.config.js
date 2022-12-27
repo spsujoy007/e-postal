@@ -6,11 +6,11 @@ module.exports = {
   daisyui: {
     themes: [
       {
-        mytheme: {
+        epostalTheme: {
         
 "primary": "#9b6ab2",
         
-"secondary": "#F000B8",
+"secondary": "#b684ce",
         
 "accent": "#37CDBE",
         

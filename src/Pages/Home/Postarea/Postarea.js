@@ -1,9 +1,29 @@
 import React from 'react';
+import { FaPlus, FaRegFileImage } from "react-icons/fa";
 
 const Postarea = () => {
+    const handlePost = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const caption = form.caption.value;
+        const postImage = form.postImage.files[0];
+        console.log(caption, postImage)
+    }
     return (
-        <div>
-            this is post area
+        <div className='py-10'>
+            <form onSubmit={handlePost}>
+                <div className="card  bg-base-100 shadow-xl">
+                <div className="card-body">
+                    <textarea name='caption' className="textarea textarea-bordered" placeholder="Bio"></textarea>
+                    <div className='flex gap-2 items-center'>
+                        <input name='postImage' type="file" placeholder='chose image' className="file-input w-full border-1 border-gray-300" />
+                    </div>
+                <div className="card-actions justify-end">
+                    <button type='submit' className="btn btn-primary px-20">Post</button>
+                </div>
+                </div>
+                </div>
+            </form>
         </div>
     );
 };

@@ -10,13 +10,13 @@ const Postarea = () => {
         console.log(caption, postImage)
     }
     return (
-        <div className='py-10'>
+        <div className='py-10 '>
             <form onSubmit={handlePost}>
-                <div className="card  bg-base-100 shadow-xl">
+                <div className="card  bg-base-100 shadow-xl border-4 border-primary">
                 <div className="card-body">
                     <textarea name='caption' className="textarea textarea-bordered" placeholder="Bio"></textarea>
                     <div className='flex gap-2 items-center'>
-                        <input name='postImage' type="file" placeholder='chose image' className="file-input w-full border-1 border-gray-300" />
+                        <input name='postImage' type="file" placeholder='chose image' className="file-input file-input-primary w-full border-1 border-gray-300" />
                     </div>
                 <div className="card-actions justify-end">
                     <button type='submit' className="btn btn-primary px-20">Post</button>

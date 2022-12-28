@@ -3,7 +3,7 @@ import Postarea from '../Postarea/Postarea';
 
 const Home = () => {
     return (
-        <div>
+        <div className='md:max-w-[600px] mx-auto'>
             <Postarea></Postarea>
         </div>
     );

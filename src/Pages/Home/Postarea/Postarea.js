@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { FaFileImage, FaPlus, FaRegFileImage, FaRegPlusSquare } from "react-icons/fa";
+import { FaFileImage } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../context/AuthProvider';
 
 const Postarea = () => {
+    const {user} = useContext(AuthContext)
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
     const currentdate = new Date();
     const date = currentdate.toLocaleDateString("en-US", {
@@ -11,6 +16,7 @@ const Postarea = () => {
     });
 
     const handlePost = (event) => {
+        setLoading(true);
         event.preventDefault();
         const form = event.target;
         const caption = form.caption.value;
@@ -29,6 +35,30 @@ const Postarea = () => {
             .then(res => res.json())
             .then(pictureData => {
                 const picture = pictureData.data.url;
+                const postBody = {
+                    caption,
+                    picture,
+                    date,
+                    likecount: 0,
+                    user
+                }
+        
+                fetch(`http://localhost:5000/posts`, {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(postBody) 
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    if(data.acknowledged){
+                        setLoading(false);
+                        navigate('/media');
+                        toast.success('Post added')
+                    }
+                })
             })
     }
 
@@ -51,7 +81,12 @@ const Postarea = () => {
 </div>
                     </div>
                 <div className="card-actions">
-                    <button type='submit' className="btn btn-primary w-full">Post</button>
+                    {
+                        loading ?
+                        <button className="btn btn-secondary loading w-full">posting...</button>
+                        :
+                        <button type='submit' className="btn btn-primary w-full">Post</button>
+                    }
                 </div>
                 </div>
                 </div>

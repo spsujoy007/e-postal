@@ -18,10 +18,19 @@ const Header = () => {
         <li><Link to='/media'>Media</Link></li>
         <li><Link to='/'>Message</Link></li>
         <li><Link to='/about'>About</Link></li>
+        {
+          user?.uid ?
+          <button onClick={handleLogout} className='btn btn-primary'>Logout</button>
+        :
+          <>
+            <Link to='/login'><button className='btn btn-primary'>Login</button></Link>
+          </>
+        
+        }
     </>
     return (
         <div>
-            <div className="navbar bg-base-100 glass">
+            <div className="navbar glass fixed z-20">
   <div className="navbar-start">
     <div className="dropdown">
       <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -39,19 +48,22 @@ const Header = () => {
     </ul>
   </div>
   <div className="navbar-end">
-        {
-          user?.uid ?
-          <button onClick={handleLogout} className='btn btn-primary'>Logout</button>
-        :
-          <>
-          <Link to='/login'><button className='btn btn-primary'>Login</button></Link>
-          <Link to='/register'><button className='btn btn-primary'>register</button></Link>
-          </>
-        
-        }
-        
-        
-      
+       {
+        user?.uid && <div className='flex items-center gap-5'>
+        <h2 className='text-xl'>{user?.displayName}</h2>
+          <div className="avatar">
+            <div className=" rounded-full">
+              {
+                user?.photoURL ?
+                <img style={{width: '40px', height: '40px'}} src={user?.photoURL} alt=''/>
+                :
+                <img style={{width: '40px', height: '40px'}} src='https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541' alt=''/>
+
+              }
+            </div>
+          </div>
+        </div>
+       }
   </div>
 </div>
         </div>

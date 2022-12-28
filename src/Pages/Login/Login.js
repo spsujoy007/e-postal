@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { FaGoogle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
@@ -15,13 +16,13 @@ const Login = () => {
     const password = form.password.value;
     singIn(email, password)
     .then(result => {
-      const user = result.user;
       navigate('/')
+      toast.success('Login successful')
       setError('')
     })
     .catch(err => {
       setError(err.message)
-      console.log(err);
+      toast.error(err.message)
     })
   }
 
@@ -32,7 +33,8 @@ const Login = () => {
   }
 
     return (
-        <form onSubmit={handleSignIn} className='mt-10 mb-40'>
+        <div className='mt-10 mb-40'>
+          <form onSubmit={handleSignIn} >
             <div className="hero">
   <div className="hero-content flex-col lg:flex-row-reverse">
     <div className=" lg:text-left">
@@ -40,6 +42,7 @@ const Login = () => {
     </div>
     <div className="card w-full bg-base-100">
       <div className="card-body">
+        
         <div className="form-control">
             <h2 className='text-4xl font-semibold text-primary uppercase'>Login now</h2>
           <label className="label">
@@ -63,21 +66,25 @@ const Login = () => {
         </div>
                
             </div>
-            <div className="divider">OR</div>
-        <div className="grid place-items-center">
-            <div className='flex justify-center'>
-                <button className='btn btn-primary px-20'>
-                    <FaGoogle className='text-2xl text-white'></FaGoogle> 
-                </button>
-            </div> 
-            <h2 className='my-3'>If you don't have an account. Please <Link to='/register' className='underline text-primary'>Register</Link></h2> 
-        </div>
+            
         </div>
       </div>
     </div>
   </div>
 </div>
         </form>
+
+        <div className=''>
+            <div className=''>
+                
+        <button onClick={handlenGoogleLogin} className='btn btn-primary px-20'>
+        <FaGoogle className='text-2xl text-white'></FaGoogle> 
+    </button>
+            </div> 
+            <h2 className='my-3'>If you don't have an account. Please <Link to='/register' className='underline text-primary'>Register</Link></h2> 
+        </div>
+        
+        </div>
     );
 };
 

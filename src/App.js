@@ -7,7 +7,11 @@ function App() {
   return (
     <div className="App" data-theme='epostalTheme'>
       <RouterProvider router={routes}></RouterProvider>
-      <Toaster></Toaster>
+      <Toaster 
+        position="top-center"
+        reverseOrder={false}>
+      </Toaster>
+      
     </div>
   );
 }

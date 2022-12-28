@@ -8,7 +8,7 @@ module.exports = {
       {
         epostalTheme: {
         
-"primary": "#9b6ab2",
+"primary": "#613267",
         
 "secondary": "#b684ce",
         

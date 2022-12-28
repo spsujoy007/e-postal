@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
+import { toast } from 'react-hot-toast';
 import { FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 const Register = () => {
-    const {createUser, googleSign} = useContext(AuthContext);
+    const navigate = useNavigate();
+    const {createUser, googleSign, updateUserData} = useContext(AuthContext);
 
     const handleRegister = (event) => {
         event.preventDefault();
@@ -13,20 +15,52 @@ const Register = () => {
         const picture = form.image.files[0];
         const email = form.email.value;
         const password = form.password.value;
-        console.log(name, picture, email, password);
-        createUser(email, password)
-        .then(result => {
-            const user = result.user;
-            console.log(user);
+        console.log(picture);
+
+        const imgbbsecret = process.env.REACT_APP_imgbb_secret;
+        console.log(imgbbsecret)
+        const formData = new FormData();
+        formData.append('image', picture);
+        const url = `https://api.imgbb.com/1/upload?key=${imgbbsecret}`;
+        fetch( url, {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.json())
+        .then(pictureData => {
+            console.log(pictureData);
+            if(pictureData.success){
+                createUser(email, password)
+                .then(result => {
+                console.log(result.user);
+                toast.success('Account created');
+                handleUpdateProfile(name, pictureData.data.url);
+                navigate('/')
         })
         .catch(err => console.error(err))
+            }
+        })
+
+        
     }
 
+    const handleUpdateProfile = (name, photoURL) => {
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+        }
+        updateUserData(profile)
+        .then(() => {})
+        .catch(err => console.error(err))
+
+    }
+    
     const handleGoogleSign = () => {
         googleSign()
         .then(result => {
             const user = result.user;
             console.log(user)
+            navigate('/')
         })
         .catch(err => console.error(err))
     }

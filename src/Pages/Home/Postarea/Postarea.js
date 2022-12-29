@@ -69,16 +69,18 @@ const Postarea = () => {
                 <div className="card bg-[#fdf4ff] shadow-md ">
                 <div className="card-body">
                     <div className='md:flex md:gap-x-2'>
-                    <textarea name='caption' className="md:flex-1 textarea border-2 border-primary textarea-bordered min-h-[100px]" placeholder="What's on your mind?"></textarea>
+                    <textarea name='caption' className="md:flex-1 w-full textarea border-2 border-primary textarea-bordered min-h-[100px]" placeholder="What's on your mind?"></textarea>
 
-<div className='flex gap-2 hover:bg-primary hover:text-white hover:cursor-pointer items-center border-2 border-primary p-2 text-primary uppercase rounded-lg'>
-    <label htmlFor="fileInpu" className='flex flex-col items-center text-xl  '>
-        <FaFileImage></FaFileImage> 
-        <span className='ml-2'>Select photo</span>
-    </label>
-    <input id='fileInpu' name='postImage' type="file" className="file-input file-input-primary w-full border-1 border-gray-300 hidden none" />
+        <label htmlFor="fileInpu" className='flex justify-center gap-2 hover:bg-primary hover:text-white hover:cursor-pointer items-center border-2 border-primary p-2 text-primary uppercase rounded-lg'>
+        <div >
+            <div className='flex flex-col items-center text-xl  '>
+                <FaFileImage></FaFileImage> 
+                <span>Select photo</span>
+            </div>
+                <input id='fileInpu' name='postImage' type="file" className="file-input file-input-primary w-full border-1 border-gray-300 hidden none" />
 
-</div>
+        </div>
+        </label>
                     </div>
                 <div className="card-actions">
                     {

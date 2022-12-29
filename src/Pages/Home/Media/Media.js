@@ -20,9 +20,8 @@ const Media = () => {
     }
 
     return (
-        <div className='mb-20'>
-            <h2>Media section {posts.length}</h2>
-            <div className='grid grid-cols-3 gap-10'>
+        <div className='mb-20 md:max-w-[600px] mx-auto'>
+            <div className='grid grid-cols-1 gap-10'>
                 {
                     posts.map(post => <MediaCard
                         key={post._id}

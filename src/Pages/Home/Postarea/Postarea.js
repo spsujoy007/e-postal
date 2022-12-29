@@ -43,7 +43,7 @@ const Postarea = () => {
                     user
                 }
         
-                fetch(`http://localhost:5000/posts`, {
+                fetch(`http://localhost:5000/posts/posts`, {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

@@ -58,7 +58,6 @@ const Header = () => {
                 <img style={{width: '40px', height: '40px'}} src={user?.photoURL} alt=''/>
                 :
                 <img style={{width: '40px', height: '40px'}} src='https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541' alt=''/>
-
               }
             </div>
           </div>

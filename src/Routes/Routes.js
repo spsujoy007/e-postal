@@ -3,6 +3,7 @@ import Main from "../Layout/Main";
 import About from "../Pages/About/About";
 import Home from "../Pages/Home/Home/Home";
 import Media from "../Pages/Home/Media/Media";
+import MediaCardDetail from "../Pages/Home/Media/MediaCardDetail";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Login/Register";
 import ErrorPage from "../Pages/Shared/ErrorPage/ErrorPage";
@@ -32,6 +33,11 @@ export const routes = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/posts/:id',
+                loader: async({params}) => await fetch(`http://localhost:5000/posts/${params.id}`),
+                element: <MediaCardDetail></MediaCardDetail>
             },
         ]
     }

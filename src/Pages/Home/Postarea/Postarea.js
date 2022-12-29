@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { FaFileImage } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
 
 const Postarea = () => {
@@ -43,7 +43,7 @@ const Postarea = () => {
                     user
                 }
         
-                fetch(`http://localhost:5000/posts/posts`, {
+                fetch(`https://e-postal-server.vercel.app/posts`, {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -69,7 +69,7 @@ const Postarea = () => {
                 <div className="card bg-[#fdf4ff] shadow-md ">
                 <div className="card-body">
                     <div className='md:flex md:gap-x-2'>
-                    <textarea name='caption' className="md:flex-1 w-full textarea border-2 border-primary textarea-bordered min-h-[100px]" placeholder="What's on your mind?"></textarea>
+                    <textarea name='caption' className="md:flex-1 w-full textarea border-2 border-primary textarea-bordered" placeholder="What's on your mind?"></textarea>
 
         <label htmlFor="fileInpu" className='flex justify-center gap-2 hover:bg-primary hover:text-white hover:cursor-pointer items-center border-2 border-primary p-2 text-primary uppercase rounded-lg'>
         <div >
@@ -84,10 +84,17 @@ const Postarea = () => {
                     </div>
                 <div className="card-actions">
                     {
-                        loading ?
-                        <button className="btn btn-secondary loading w-full">posting...</button>
+                        user?.uid ?
+                        <>
+                        {
+                            loading ?
+                            <button className="btn btn-secondary loading w-full">posting...</button>
+                            :
+                            <button type='submit' className="btn btn-primary w-full">Post</button>
+                        }
+                        </>
                         :
-                        <button type='submit' className="btn btn-primary w-full">Post</button>
+                        <Link to='/login' className='w-full'><button className="btn btn-primary w-full">Post</button></Link>
                     }
                 </div>
                 </div>

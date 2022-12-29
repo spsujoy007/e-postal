@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
+import ScrollToTop from '../../../Hooks/ScrollToTop/ScrollToTop';
 
 const Header = () => {
 
@@ -14,9 +15,10 @@ const Header = () => {
   }
 
     const menubar = <>
+    <ScrollToTop>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/media'>Media</Link></li>
-        <li><Link to='/'>Message</Link></li>
+        <li><Link to='/message'>Message</Link></li>
         <li><Link to='/about'>About</Link></li>
         {
           user?.uid ?
@@ -26,8 +28,11 @@ const Header = () => {
             <Link to='/login'><button className='btn btn-primary'>Login</button></Link>
           </>
         
-        }
+      }
+    </ScrollToTop>
     </>
+
+
     return (
         <div>
             <div className="navbar glass fixed z-20">

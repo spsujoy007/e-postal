@@ -1,13 +1,17 @@
 import React, { useContext, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { FaGoogle } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 const Login = () => {
   const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || '/'
+
   const {user, singIn, googleSign} = useContext(AuthContext);
   const [error, setError] = useState('');
+
 
   const handleSignIn = (event) => {
     event.preventDefault();
@@ -16,13 +20,13 @@ const Login = () => {
     const password = form.password.value;
     singIn(email, password)
     .then(result => {
-      navigate('/')
+      const user = result.user;
       toast.success('Login successful')
+      navigate(from, {replace: true})
       setError('')
     })
     .catch(err => {
       setError(err.message)
-      toast.error(err.message)
     })
   }
 

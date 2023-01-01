@@ -43,7 +43,7 @@ const Postarea = () => {
                     user
                 }
         
-                fetch(`https://e-postal-server.vercel.app/posts`, {
+                fetch(`http://localhost:5000/posts`, {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

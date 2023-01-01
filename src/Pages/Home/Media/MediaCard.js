@@ -23,18 +23,27 @@ const MediaCard = ({post}) => {
                 
                 <div>
                     <h2 className="card-title m-0 ">{user?.displayName}</h2>
-                  <p className='text-blue-400'>{date}</p>
+                    <p className='text-blue-400'>{date}</p>
                 </div>
 
                 </div>
 
                 </div>
-                <p className='ml-3 py-2'>{caption}</p>
+
+                <p className='ml-3 py-2'>
+                    {
+                    caption.length > 85 ? 
+                    <>{caption.slice(0, 85)}...<button  className='text-blue-600 text-bold'>see more</button></>
+                    :
+                    <>{caption}</>
+                    }
+                </p>
+
                 {
-                    picture && <img className='max-h-[300px]' src={picture} alt={caption.slice(0,6)} />
+                    picture && <figure><img className='max-h-[350px]' src={picture} alt={caption.slice(0,6)} /></figure>
                 }
                 <div className='px-5 '>
-                    {<p className='px-3 py-1'>{likecount} Likes</p>} <hr />
+                    {<p className='px-3 py-1'><FaRegThumbsUp className=''></FaRegThumbsUp> {likecount} Likes</p>} <hr />
                     <div className='px-px flex justify-center gap-10 py-1'>
                     
                     <Link to={`/posts/${_id}`}><button className='p-3'>Details</button></Link>

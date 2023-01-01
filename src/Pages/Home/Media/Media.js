@@ -7,7 +7,7 @@ const Media = () => {
     const {data: posts = [], refetch, isLoading} = useQuery({
         queryKey: ['posts'],
         queryFn: async() => {
-            const res = await fetch(`https://e-postal-server.vercel.app/posts`);
+            const res = await fetch(`http://localhost:5000/posts`);
             const data = await res.json();
             return data
         }
@@ -20,7 +20,7 @@ const Media = () => {
     }
 
     return (
-        <div className='mb-20 md:max-w-[600px] mx-auto'>
+        <div className='mb-20 md:max-w-[400px] mx-auto'>
             <div className='grid grid-cols-1 gap-10'>
                 {
                     posts.map(post => <MediaCard

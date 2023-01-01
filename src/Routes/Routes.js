@@ -42,7 +42,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/posts/:id',
-                loader: async({params}) => await fetch(`https://e-postal-server.vercel.app/posts/${params.id}`),
+                loader: async({params}) => await fetch(`http://localhost:5000/posts/${params.id}`),
                 element: <PrivateRoute><MediaCardDetail></MediaCardDetail></PrivateRoute>
             },
         ]

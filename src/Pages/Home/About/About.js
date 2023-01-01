@@ -25,7 +25,7 @@ const About = () => {
             address,
             user_email: user.email
         }
-        fetch(`https://e-postal-server.vercel.app/about`, {
+        fetch(`http://localhost:5000/about`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -42,7 +42,7 @@ const About = () => {
     const {data: about = {}, refetch, isLoading} = useQuery({
         queryKey: ['about'],
         queryFn: async () => {
-            const res = await fetch(`https://e-postal-server.vercel.app/about/${user.email}`);
+            const res = await fetch(`http://localhost:5000/about/${user.email}`);
             const data = await res.json();
             return data
         }

@@ -22,7 +22,7 @@ const MediaCardDetail = () => {
         setLoading(true)
         console.log(plusLike);
 
-        fetch(`https://e-postal-server.vercel.app/postlike/${plusLike}?id=${id}`, {
+        fetch(`http://localhost:5000/postlike/${plusLike}?id=${id}`, {
             method: 'PUT',
         })
         .then(res => res.json())
@@ -58,7 +58,7 @@ const MediaCardDetail = () => {
             date: pdate
         }
 
-        fetch(`https://e-postal-server.vercel.app/comments`, {
+        fetch(`http://localhost:5000/comments`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -76,7 +76,7 @@ const MediaCardDetail = () => {
     const {data: comments = [], refetch, isLoading} = useQuery({
         queryKey: ['comments'],
         queryFn: async () => {
-            const res = await fetch(`https://e-postal-server.vercel.app/comments`)
+            const res = await fetch(`http://localhost:5000/comments`)
             const data = await res.json();
             return data
         }

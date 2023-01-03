@@ -1,3 +1,8 @@
 .commentbox{
     transition: all 0.8;
 }
+
+.mediaimg:hover {
+    filter: brightness(50%);
+    transform: scale(1.2);
+}

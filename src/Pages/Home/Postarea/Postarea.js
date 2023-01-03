@@ -3,6 +3,7 @@ import { toast } from 'react-hot-toast';
 import { FaFileImage } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
+import './Postarea.css'
 
 const Postarea = () => {
     const {user} = useContext(AuthContext)
@@ -67,36 +68,49 @@ const Postarea = () => {
         <div className='mb-20 '>
             <form onSubmit={handlePost}>
                 <div className="card bg-[#fdf4ff] shadow-md ">
-                <div className="card-body">
-                    <div className='md:flex md:gap-x-2'>
-                    <textarea name='caption' className="md:flex-1 w-full textarea border-2 border-primary textarea-bordered" placeholder="What's on your mind?"></textarea>
+                <div className="card-body p-4 drop-shadow-xl">
+                    <div className='md:flex md:gap-x-2 items-center '>
+
+                    <div className="avatar rounded-full ring ring-white">
+                        <div className="w-11 h-11 rounded-full">
+                            {
+                                user?.photoURL ? <img src={user?.photoURL} alt={user?.disPlayName} />
+                                :
+                                <img src='https://i.ibb.co/z26f1VZ/HD-wallpaper-smiley-3d-emoticon-funny.jpg' alt={user?.disPlayName} />
+                            }
+                        </div>
+                    </div>
+
+                    <textarea name='caption' className="md:flex-1 h-5 w-full textarea border-2 border-primary textarea-bordered" placeholder="What's on your mind?"></textarea>
 
         <label htmlFor="fileInpu" className='flex justify-center gap-2 hover:bg-primary hover:text-white hover:cursor-pointer items-center border-2 border-primary p-2 text-primary uppercase rounded-lg'>
-        <div >
-            <div className='flex flex-col items-center text-xl  '>
+        <div>
+            <div className='flex items-center text-xl  '>
                 <FaFileImage></FaFileImage> 
-                <span>Select photo</span>
+                <span>Picture</span>
             </div>
-                <input id='fileInpu' name='postImage' type="file" className="file-input file-input-primary w-full border-1 border-gray-300 hidden none" />
+            <input id='fileInpu' name='postImage' type="file" className="file-input file-input-primary w-full border-1 border-gray-300 hidden none" />
 
         </div>
         </label>
-                    </div>
-                <div className="card-actions">
+
+        <div className="card-actions md:mt-0 mt-5">
                     {
                         user?.uid ?
                         <>
                         {
                             loading ?
-                            <button className="btn btn-secondary loading w-full">posting...</button>
+                            <button className="btn px-5 btn-secondary loading w-full">posting...</button>
                             :
-                            <button type='submit' className="btn btn-primary w-full">Post</button>
+                            <button type='submit' className="px-5 btn btn-primary w-full h-full">Post</button>
                         }
                         </>
                         :
                         <Link to='/login' className='w-full'><button className="btn btn-primary w-full">Post</button></Link>
                     }
                 </div>
+                    </div>
+                
                 </div>
                 </div>
             </form>

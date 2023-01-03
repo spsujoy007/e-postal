@@ -55,7 +55,11 @@ const Header = () => {
   <div className="navbar-end">
        {
         user?.uid && <div className='flex items-center gap-5'>
-        <h2 className='text-xl'>{user?.displayName}</h2>
+        <h2 className='text-xl'>
+          {
+            user?.displayName.length > 10 ? <>{user?.displayName.slice(0, 10)}...</>:<>{user?.displayName}</> 
+          }
+        </h2>
           <div className="avatar">
             <div className=" rounded-full">
               {

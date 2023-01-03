@@ -12,7 +12,7 @@ const MediaCardDetail = () => {
     const {user: ptuser, caption, picture, date, likecount, _id } = post;
     const navigate = useNavigate();
 
-    const [showComment, setShowComment] = useState(false);
+    const [showComment, setShowComment] = useState(true);
     const [loading, setLoading] = useState(false)
     const [plusLike, setPlusLike] = useState(false);
     console.log(showComment)
@@ -88,7 +88,7 @@ const MediaCardDetail = () => {
     }
 
     return (
-        <div className='pb-20'>
+        <div className='pb-20 mx-auto md:max-w-[600px]'>
             <div className="card bg-[#fdf4ff] drop-shadow-lg text-left rounded-none">
                 <div className="card-body">
                 
@@ -107,12 +107,17 @@ const MediaCardDetail = () => {
                 </div>
 
                 </div>
-                <p className='ml-3 py-2 max-h-[500px] mx-auto'>{caption}</p>
+                <p className='ml-3 max-h-[500px] mx-auto'>{caption}</p>
                 {
                     picture && <figure><img className='max-h-[500px]' src={picture} alt={caption.slice(0,6)} /></figure>
                 }
                 <div className='px-5 '>
-                    {<p className='px-3 py-1'>{likecount} Likes</p>} <hr />
+                {
+                        <p className='px-3 py-1 flex items-center'>
+                            <div className='p-1 bg-blue-500 rounded-full text-white mr-1 '><FaRegThumbsUp className=''>
+                        </FaRegThumbsUp></div>
+                             {likecount} Likes</p>
+                    } <hr />
                     <div className='px-px flex justify-between gap-10 py-1'>
                     {
                         plusLike ? 
@@ -165,12 +170,12 @@ const MediaCardDetail = () => {
                                 <div className='flex gap-5 items-center'>
                                     <div className="avatar">
                                         <div className="w-10 rounded-full">
-                                            <img src={comment?.photoURL} alt="Tailwind-CSS-Avatar-component" />
+                                            <img src={comment?.photoURL} alt={comment.displayName} />
                                         </div>
                                     </div>
-                                    <div>
+                                    <div className='p-2 bg-pink-100 rounded-xl'>
                                         <h5 className='text-xl inline uppercase'>{comment?.name}</h5>
-                                        <p className='p-2 bg-pink-100 rounded-xl block'>{comment.comment}</p>
+                                        <p className=''>{comment.comment}</p>
                                     </div>
                                 </div>
 

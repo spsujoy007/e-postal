@@ -7,11 +7,11 @@ import { AuthContext } from '../../context/AuthProvider';
 const Login = () => {
   const navigate = useNavigate()
   const location = useLocation()
-  const from = location.state?.from?.pathname || '/'
-
   const {user, singIn, googleSign} = useContext(AuthContext);
   const [error, setError] = useState('');
 
+  const from = location.state?.from?.pathname || '/'
+  
 
   const handleSignIn = (event) => {
     event.preventDefault();
@@ -21,8 +21,10 @@ const Login = () => {
     singIn(email, password)
     .then(result => {
       const user = result.user;
-      toast.success('Login successful')
-      navigate(from, {replace: true})
+      if(user){
+        navigate(from, {replace: true})
+        toast.success('Login successful')
+      }
       setError('')
     })
     .catch(err => {
@@ -44,7 +46,7 @@ const Login = () => {
     <div className=" lg:text-left">
       <img className='md:w-full' src="https://cdn.dribbble.com/users/2500979/screenshots/6486096/dribbble_gif_login.gif" alt="" />
     </div>
-    <div className="card w-full bg-base-100">
+    <div className="card w-full bg-blue-100">
       <div className="card-body">
         
         <div className="form-control">
